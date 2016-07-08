@@ -13,6 +13,7 @@
 		008A63CF1D300269000E36C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 008A63CD1D300269000E36C4 /* LaunchScreen.storyboard */; };
 		008A63D81D3003F3000E36C4 /* TweetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A63D71D3003F3000E36C4 /* TweetTableViewController.swift */; };
 		00C4A2BE1D300D7B00C19696 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C4A2BD1D300D7B00C19696 /* Twitter.framework */; };
+		00E7B11A1D3016C2001143D8 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E7B1191D3016C2001143D8 /* TweetTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		008A63D01D300269000E36C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		008A63D71D3003F3000E36C4 /* TweetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewController.swift; sourceTree = "<group>"; };
 		00C4A2BD1D300D7B00C19696 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Lecture9-esgjeuhadtbklrcpvwzewakauffy/Build/Products/Debug-iphoneos/Twitter.framework"; sourceTree = "<group>"; };
+		00E7B1191D3016C2001143D8 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				008A63D61D30039C000E36C4 /* Supporting Files */,
 				008A63C81D300269000E36C4 /* Main.storyboard */,
+				00E7B1191D3016C2001143D8 /* TweetTableViewCell.swift */,
 				008A63D71D3003F3000E36C4 /* TweetTableViewController.swift */,
 			);
 			path = Smashtag;
@@ -150,6 +153,7 @@
 			files = (
 				008A63C51D300268000E36C4 /* AppDelegate.swift in Sources */,
 				008A63D81D3003F3000E36C4 /* TweetTableViewController.swift in Sources */,
+				00E7B11A1D3016C2001143D8 /* TweetTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
