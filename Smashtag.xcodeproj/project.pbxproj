@@ -8,20 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		008A63C51D300268000E36C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A63C41D300268000E36C4 /* AppDelegate.swift */; };
-		008A63C71D300268000E36C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A63C61D300268000E36C4 /* ViewController.swift */; };
 		008A63CA1D300269000E36C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 008A63C81D300269000E36C4 /* Main.storyboard */; };
 		008A63CC1D300269000E36C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 008A63CB1D300269000E36C4 /* Assets.xcassets */; };
 		008A63CF1D300269000E36C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 008A63CD1D300269000E36C4 /* LaunchScreen.storyboard */; };
+		008A63D81D3003F3000E36C4 /* TweetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A63D71D3003F3000E36C4 /* TweetTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		008A63C11D300268000E36C4 /* Smashtag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smashtag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		008A63C41D300268000E36C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		008A63C61D300268000E36C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		008A63C91D300269000E36C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		008A63CB1D300269000E36C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		008A63CE1D300269000E36C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		008A63D01D300269000E36C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		008A63D71D3003F3000E36C4 /* TweetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +54,22 @@
 		008A63C31D300268000E36C4 /* Smashtag */ = {
 			isa = PBXGroup;
 			children = (
-				008A63C41D300268000E36C4 /* AppDelegate.swift */,
-				008A63C61D300268000E36C4 /* ViewController.swift */,
+				008A63D61D30039C000E36C4 /* Supporting Files */,
 				008A63C81D300269000E36C4 /* Main.storyboard */,
+				008A63D71D3003F3000E36C4 /* TweetTableViewController.swift */,
+			);
+			path = Smashtag;
+			sourceTree = "<group>";
+		};
+		008A63D61D30039C000E36C4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				008A63C41D300268000E36C4 /* AppDelegate.swift */,
 				008A63CB1D300269000E36C4 /* Assets.xcassets */,
 				008A63CD1D300269000E36C4 /* LaunchScreen.storyboard */,
 				008A63D01D300269000E36C4 /* Info.plist */,
 			);
-			path = Smashtag;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,8 +144,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				008A63C71D300268000E36C4 /* ViewController.swift in Sources */,
 				008A63C51D300268000E36C4 /* AppDelegate.swift in Sources */,
+				008A63D81D3003F3000E36C4 /* TweetTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
