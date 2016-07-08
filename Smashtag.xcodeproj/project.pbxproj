@@ -12,6 +12,7 @@
 		008A63CC1D300269000E36C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 008A63CB1D300269000E36C4 /* Assets.xcassets */; };
 		008A63CF1D300269000E36C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 008A63CD1D300269000E36C4 /* LaunchScreen.storyboard */; };
 		008A63D81D3003F3000E36C4 /* TweetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A63D71D3003F3000E36C4 /* TweetTableViewController.swift */; };
+		00C4A2BE1D300D7B00C19696 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C4A2BD1D300D7B00C19696 /* Twitter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		008A63CE1D300269000E36C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		008A63D01D300269000E36C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		008A63D71D3003F3000E36C4 /* TweetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewController.swift; sourceTree = "<group>"; };
+		00C4A2BD1D300D7B00C19696 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Lecture9-esgjeuhadtbklrcpvwzewakauffy/Build/Products/Debug-iphoneos/Twitter.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00C4A2BE1D300D7B00C19696 /* Twitter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +41,7 @@
 		008A63B81D300268000E36C4 = {
 			isa = PBXGroup;
 			children = (
+				00C4A2BD1D300D7B00C19696 /* Twitter.framework */,
 				008A63C31D300268000E36C4 /* Smashtag */,
 				008A63C21D300268000E36C4 /* Products */,
 			);
@@ -295,6 +299,7 @@
 				008A63D51D300269000E36C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
