@@ -40,11 +40,8 @@ class TweetTableViewController: UITableViewController {
             lastTwitterRequest = request
             request.fetchTweets { [weak weakSelf = self] newTweets in
                 dispatch_async(dispatch_get_main_queue()) {
-                    if request == weakSelf?.lastTwitterRequest{
-                        if !newTweets.isEmpty {
-                            weakSelf?.tweets.insert(newTweets, atIndex: 0)
-                        }
-                    }
+                    guard request == weakSelf?.lastTwitterRequest && !newTweets.isEmpty else {return}
+                    weakSelf?.tweets.insert(newTweets, atIndex: 0)
                 }
             }
         }
