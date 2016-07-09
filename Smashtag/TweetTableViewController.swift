@@ -10,7 +10,7 @@ import UIKit
 import Twitter
 
 // first thing to do when creating new VC is what is my model?
-class TweetTableViewController: UITableViewController {
+class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
     var tweets = [Array<Twitter.Tweet>]() {
         didSet {
@@ -50,7 +50,8 @@ class TweetTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchText = "#stanford"
+        tableView.estimatedRowHeight = tableView.rowHeight // need to add estimated height 
+        tableView.rowHeight = UITableViewAutomaticDimension // adds dynamic height for tableViewCells
     }
     
     
@@ -78,6 +79,17 @@ class TweetTableViewController: UITableViewController {
         }
         
         return cell
+    }
+    @IBOutlet weak var searchTextField: UITextField! {
+        didSet {
+            searchTextField.delegate = self
+            searchTextField.text = searchText
+        }
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        searchText = textField.text
+        return true
     }
     
     /*
