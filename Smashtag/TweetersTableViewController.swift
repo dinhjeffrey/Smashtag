@@ -16,8 +16,12 @@ class TweetersTableViewController: CoreDataTableViewController {
     private func updateUI() {
         if let context = managedObjectContext where mention?.characters.count > 0 {
             let request = NSFetchRequest(entityName: "TwitterUser")
-            request.predicate = NSPredicate(format: "any tweets.text contains[c] %@", mention!)
-            request.sortDescriptors = [NSSortDescriptor(key: "screenName", ascending: true)]
+            request.predicate = NSPredicate(format: "any tweets.text contains[c] %@ and !screenName beginswith[c] %@", mention!, "darkside")
+            request.sortDescriptors = [NSSortDescriptor(
+                key: "screenName",
+                ascending: true,
+                selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))
+                )]
             self.fetchedResultsController = NSFetchedResultsController(
                 fetchRequest: request,
                 managedObjectContext: context,
@@ -29,7 +33,16 @@ class TweetersTableViewController: CoreDataTableViewController {
         }
     }
     
-
+    private func tweetCountWithMentionByTwitterUser(user: TwitterUser) -> Int? {
+        var count: Int?
+        user.managedObjectContext?.performBlockAndWait{
+            let request = NSFetchRequest(entityName: "Tweet")
+            // [c] means case insensitively
+            request.predicate = NSPredicate(format: "text contains[c] %@ and tweeter = %@", self.mention!, user)
+            count = user.managedObjectContext?.countForFetchRequest(request, error: nil)
+        }
+        return count
+    }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TwitterUserCell", forIndexPath: indexPath)
 
@@ -41,6 +54,11 @@ class TweetersTableViewController: CoreDataTableViewController {
                 screenName = twitterUser.screenName
             }
             cell.textLabel?.text = screenName
+            if let count = tweetCountWithMentionByTwitterUser(twitterUser) {
+                cell.detailTextLabel?.text = (count == 1) ? "1 tweet" : "\(count) tweets"
+            } else {
+                cell.detailTextLabel?.text = ""
+            }
         }
 
         return cell
