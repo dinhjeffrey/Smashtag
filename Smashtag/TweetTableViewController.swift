@@ -8,9 +8,12 @@
 
 import UIKit
 import Twitter
+import CoreData
 
 // first thing to do when creating new VC is what is my model?
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
+    
+    var managedObjectContext: NSManagedObjectContext? = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
     
     var tweets = [Array<Twitter.Tweet>]() {
         didSet {
@@ -42,15 +45,54 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
                 dispatch_async(dispatch_get_main_queue()) {
                     guard request == weakSelf?.lastTwitterRequest && !newTweets.isEmpty else {return}
                     weakSelf?.tweets.insert(newTweets, atIndex: 0)
+                    weakSelf?.updateDatabase(newTweets)
                 }
             }
+        }
+    }
+    
+    private func updateDatabase(newTweets: [Twitter.Tweet]) {
+        // anytime we access the database we have to use performBlock
+        managedObjectContext?.performBlock{
+            for twitterInfo in newTweets {
+                // create a new, unique Tweet with that Twitter info
+                _ = Tweet.tweetWithTwitterInfo(twitterInfo, inManagedObjectContext: self.managedObjectContext!) // _ = tells we are returning something
+            }
+            do {
+                try self.managedObjectContext?.save()
+            } catch let error {
+                print("Core Data Error: \(error)")
+            }
+        }
+        // happens asynchronously
+        printDatabaseStatistics()
+        print("done printing database statistics")
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "TweetersMentioningSearchTerm" {
+            if let tweetersTVC = segue.destinationViewController  as? TweetersTableViewController {
+                tweetersTVC.mention = searchText
+                tweetersTVC.managedObjectContext = managedObjectContext
+            }
+        }
+    }
+    
+    private func printDatabaseStatistics() {
+        managedObjectContext?.performBlock{
+            if let results = try? self.managedObjectContext!.executeFetchRequest(NSFetchRequest(entityName: "TwitterUser")) {
+                print("\(results.count) TwitterUsers")
+            }
+            // a more eficient way to count objects
+            let tweetCount = self.managedObjectContext!.countForFetchRequest(NSFetchRequest(entityName: "Tweet"), error: nil)
+            print("\(tweetCount) Tweets")
         }
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.estimatedRowHeight = tableView.rowHeight // need to add estimated height 
+        tableView.estimatedRowHeight = tableView.rowHeight // need to add estimated height
         tableView.rowHeight = UITableViewAutomaticDimension // adds dynamic height for tableViewCells
     }
     

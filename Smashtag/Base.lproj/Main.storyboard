@@ -88,7 +88,13 @@
                             <outlet property="delegate" destination="p9m-zC-6Ib" id="If7-UX-Xwu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="rZq-1F-bgY"/>
+                    <navigationItem key="navigationItem" id="rZq-1F-bgY">
+                        <barButtonItem key="rightBarButtonItem" title="Tweeters" id="Zv6-wh-CUe">
+                            <connections>
+                                <segue destination="kuk-6B-9jI" kind="show" identifier="TweetersMentioningSearchTerm" id="OCJ-Ct-CvL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchTextField" destination="JmH-hg-CXv" id="8Zs-ea-6nF"/>
                     </connections>
@@ -96,6 +102,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hie-RQ-sNg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1269" y="318"/>
+        </scene>
+        <!--Tweeters Table View Controller-->
+        <scene sceneID="aqX-L5-ci6">
+            <objects>
+                <tableViewController id="kuk-6B-9jI" customClass="TweetersTableViewController" customModule="Smashtag" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="z1i-RU-dst">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TwitterUserCell" textLabel="aSr-Ip-cYg" detailTextLabel="Rbh-OJ-dqV" style="IBUITableViewCellStyleSubtitle" id="Mkd-mc-rp7">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mkd-mc-rp7" id="CG1-jj-98w">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aSr-Ip-cYg">
+                                            <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rbh-OJ-dqV">
+                                            <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="kuk-6B-9jI" id="gsJ-9s-vhI"/>
+                            <outlet property="delegate" destination="kuk-6B-9jI" id="upS-gU-PTs"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i8l-de-tZe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1986" y="318"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oVa-fo-Buc">
