@@ -43,11 +43,17 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
             lastTwitterRequest = request
             request.fetchTweets { [weak weakSelf = self] newTweets in
                 dispatch_async(dispatch_get_main_queue()) {
-                    guard request == weakSelf?.lastTwitterRequest && !newTweets.isEmpty else {return}
-                    weakSelf?.tweets.insert(newTweets, atIndex: 0)
-                    weakSelf?.updateDatabase(newTweets)
+                    //if request == weakSelf?.lastTwitterRequest {
+                    if !newTweets.isEmpty {
+                        weakSelf?.tweets.insert(newTweets, atIndex: 0)
+                        weakSelf?.updateDatabase(newTweets)
+                    }
+                    //}
+                    weakSelf?.refreshControl?.endRefreshing()
                 }
             }
+        } else {
+            self.refreshControl?.endRefreshing()
         }
     }
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0008742B1D399981001BA3A8 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0008742A1D399981001BA3A8 /* Twitter.framework */; };
 		008A63C51D300268000E36C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A63C41D300268000E36C4 /* AppDelegate.swift */; };
 		008A63CA1D300269000E36C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 008A63C81D300269000E36C4 /* Main.storyboard */; };
 		008A63CC1D300269000E36C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 008A63CB1D300269000E36C4 /* Assets.xcassets */; };
@@ -19,11 +20,11 @@
 		00AD3C571D343984006B8751 /* TwitterUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AD3C531D343984006B8751 /* TwitterUser+CoreDataProperties.swift */; };
 		00AD3C581D343984006B8751 /* TwitterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AD3C541D343984006B8751 /* TwitterUser.swift */; };
 		00AD3C5A1D344F6D006B8751 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AD3C591D344F6D006B8751 /* CoreDataTableViewController.swift */; };
-		00C4A2BE1D300D7B00C19696 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C4A2BD1D300D7B00C19696 /* Twitter.framework */; };
 		00E7B11A1D3016C2001143D8 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E7B1191D3016C2001143D8 /* TweetTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0008742A1D399981001BA3A8 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Lecture9-esgjeuhadtbklrcpvwzewakauffy/Build/Products/Debug-iphoneos/Twitter.framework"; sourceTree = "<group>"; };
 		008A63C11D300268000E36C4 /* Smashtag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smashtag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		008A63C41D300268000E36C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		008A63C91D300269000E36C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -38,7 +39,6 @@
 		00AD3C531D343984006B8751 /* TwitterUser+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitterUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		00AD3C541D343984006B8751 /* TwitterUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUser.swift; sourceTree = "<group>"; };
 		00AD3C591D344F6D006B8751 /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
-		00C4A2BD1D300D7B00C19696 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Lecture9-esgjeuhadtbklrcpvwzewakauffy/Build/Products/Debug-iphoneos/Twitter.framework"; sourceTree = "<group>"; };
 		00E7B1191D3016C2001143D8 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -47,7 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00C4A2BE1D300D7B00C19696 /* Twitter.framework in Frameworks */,
+				0008742B1D399981001BA3A8 /* Twitter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,7 +57,7 @@
 		008A63B81D300268000E36C4 = {
 			isa = PBXGroup;
 			children = (
-				00C4A2BD1D300D7B00C19696 /* Twitter.framework */,
+				0008742A1D399981001BA3A8 /* Twitter.framework */,
 				008A63C31D300268000E36C4 /* Smashtag */,
 				008A63C21D300268000E36C4 /* Products */,
 			);
@@ -140,7 +140,7 @@
 				TargetAttributes = {
 					008A63C01D300268000E36C4 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 5JELCQ2NQZ;
+						DevelopmentTeam = 7A3T37QMJ4;
 					};
 				};
 			};
@@ -302,10 +302,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Smashtag/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dindledoo.Smashtag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -313,10 +315,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Smashtag/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dindledoo.Smashtag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

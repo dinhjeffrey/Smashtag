@@ -17,7 +17,7 @@ class Tweet: NSManagedObject {
     class func tweetWithTwitterInfo(twitterInfo: Twitter.Tweet, inManagedObjectContext context: NSManagedObjectContext) -> Tweet? {
         
         let request = NSFetchRequest(entityName: "Tweet")
-        request.predicate = NSPredicate(format: "unique = %@", twitterInfo.id)
+        request.predicate = NSPredicate(format: "unique = %@", twitterInfo.id!)
         
         if let tweet = (try? context.executeFetchRequest(request))?.first as? Tweet {
             return tweet
