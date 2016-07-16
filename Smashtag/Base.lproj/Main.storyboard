@@ -108,6 +108,7 @@
                                     <outlet property="tweetProfileImageView" destination="8h2-NJ-I7D" id="Nyb-na-P6X"/>
                                     <outlet property="tweetScreenNameLabel" destination="BKh-hI-5aZ" id="gKB-Jg-BbT"/>
                                     <outlet property="tweetTextLabel" destination="yOP-j7-VRc" id="wAN-aw-uID"/>
+                                    <segue destination="SkO-OO-Xdr" kind="show" identifier="Show Mention Segue" id="hRa-mz-mHa"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -139,7 +140,6 @@
                     </refreshControl>
                     <connections>
                         <outlet property="searchTextField" destination="JmH-hg-CXv" id="8Zs-ea-6nF"/>
-                        <segue destination="SkO-OO-Xdr" kind="show" identifier="Show Tweet" id="BRE-3g-SGq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hie-RQ-sNg" userLabel="First Responder" sceneMemberID="firstResponder"/>

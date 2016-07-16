@@ -29,8 +29,6 @@ class TweetTableViewCell: UITableViewCell {
         ]
     }
     
-    
-    
     var tweet: Twitter.Tweet? {
         didSet {
             updateUI()

@@ -140,10 +140,15 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     // when the user hits the Tweeters bar button item
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "TweetersMentioningSearchTerm" {
-            if let tweetersTVC = segue.destinationViewController  as? TweetersTableViewController {
+        if segue.identifier == Storyboard.TweetersMentioningSearchTerm {
+            if let tweetersTVC = segue.destinationViewController.contentViewController  as? TweetersTableViewController {
                 tweetersTVC.mention = searchText
                 tweetersTVC.managedObjectContext = managedObjectContext
+            }
+        }
+        if segue.identifier == Storyboard.ShowMentionSegue {
+            if let mentionTVC = segue.destinationViewController.contentViewController as? MentionTableViewController {
+                mentionTVC.title = "Mention Table View Controller"
             }
         }
     }
@@ -153,8 +158,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     // MARK: UITableViewDataSource
-    
-    
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Section \(tweets.count - section) & New Tweets: \(self.currentTweetCount)"
@@ -183,6 +186,8 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
     private struct Storyboard {
         static let TweetCellIdentifier = "Tweet"
+        static let TweetersMentioningSearchTerm = "TweetersMentioningSearchTerm"
+        static let ShowMentionSegue = "Show Mention Segue"
     }
     
     // MARK: Outlets
@@ -220,5 +225,30 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
      // Pass the selected object to the new view controller.
      }
      */
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
+
+extension UIViewController {
+    var contentViewController: UIViewController {
+        if let navcon = self as? UINavigationController {
+            return navcon.visibleViewController ?? self
+        } else {
+            return self
+        }
+    }
+}
+
