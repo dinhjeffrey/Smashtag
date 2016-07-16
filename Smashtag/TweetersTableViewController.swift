@@ -33,16 +33,10 @@ class TweetersTableViewController: CoreDataTableViewController {
         }
     }
     
-    private func tweetCountWithMentionByTwitterUser(user: TwitterUser) -> Int? {
-        var count: Int?
-        user.managedObjectContext?.performBlockAndWait{
-            let request = NSFetchRequest(entityName: "Tweet")
-            // [c] means case insensitively
-            request.predicate = NSPredicate(format: "text contains[c] %@ and tweeter = %@", self.mention!, user)
-            count = user.managedObjectContext?.countForFetchRequest(request, error: nil)
-        }
-        return count
-    }
+    // this is the only UITableViewDataSource method we have to implement
+    // if we use a CoreDataTableViewController
+    // the most important call is fetchedResultsController?.objectAtIndexPath(indexPath)
+    // (that's how we get the object that is in this row so we can load the cell up)
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TwitterUserCell", forIndexPath: indexPath)
 
@@ -50,8 +44,12 @@ class TweetersTableViewController: CoreDataTableViewController {
         
         if let twitterUser = fetchedResultsController?.objectAtIndexPath(indexPath) as? TwitterUser {
             var screenName: String?
-            twitterUser.managedObjectContext?.performBlockAndWait{
+            twitterUser.managedObjectContext?.performBlockAndWait {
+                // it's easy to forget to do this on the proper queue
                 screenName = twitterUser.screenName
+                // we're not assuming the context is a main queue context
+                // so we'll grab the screenName and return to the main queue
+                // to do the cell.textLabel?.text setting
             }
             cell.textLabel?.text = screenName
             if let count = tweetCountWithMentionByTwitterUser(twitterUser) {
@@ -62,6 +60,17 @@ class TweetersTableViewController: CoreDataTableViewController {
         }
 
         return cell
+    }
+    
+    private func tweetCountWithMentionByTwitterUser(user: TwitterUser) -> Int? {
+        var count: Int?
+        user.managedObjectContext?.performBlockAndWait {
+            let request = NSFetchRequest(entityName: "Tweet")
+            // [c] means case insensitively
+            request.predicate = NSPredicate(format: "text contains[c] %@ and tweeter = %@", self.mention!, user)
+            count = user.managedObjectContext?.countForFetchRequest(request, error: nil)
+        }
+        return count
     }
 
 
