@@ -84,9 +84,18 @@
 		0008743E1D3ACB0A001BA3A8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				008A63C81D300269000E36C4 /* Main.storyboard */,
 				00E7B1191D3016C2001143D8 /* TweetTableViewCell.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		00177FF41D3AF7F500B0F13B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				00AD3C5B1D344F78006B8751 /* Core Data */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		008A63B81D300268000E36C4 = {
@@ -109,11 +118,10 @@
 		008A63C31D300268000E36C4 /* Smashtag */ = {
 			isa = PBXGroup;
 			children = (
-				00AD3C5B1D344F78006B8751 /* Core Data */,
-				008A63D61D30039C000E36C4 /* Supporting Files */,
-				008A63C81D300269000E36C4 /* Main.storyboard */,
 				0008743D1D3ACB02001BA3A8 /* Controllers */,
 				0008743E1D3ACB0A001BA3A8 /* View */,
+				00177FF41D3AF7F500B0F13B /* Model */,
+				008A63D61D30039C000E36C4 /* Supporting Files */,
 			);
 			path = Smashtag;
 			sourceTree = "<group>";
