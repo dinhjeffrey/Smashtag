@@ -16,6 +16,21 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var tweetProfileImageView: UIImageView!
     @IBOutlet weak var tweetCreatedLabel: UILabel!
     
+    // Attributes for highlighting tweet text: hashtags, urls, and user mentions
+    private struct Attributes {
+        static let Hashtags = [
+            NSForegroundColorAttributeName: UIColor.redColor()
+        ]
+        static let Urls = [
+            NSForegroundColorAttributeName: UIColor.blueColor()
+        ]
+        static let UserMentions = [
+            NSForegroundColorAttributeName: UIColor.purpleColor()
+        ]
+    }
+    
+    
+    
     var tweet: Twitter.Tweet? {
         didSet {
             updateUI()
@@ -29,13 +44,22 @@ class TweetTableViewCell: UITableViewCell {
         tweetCreatedLabel?.text = nil
         
         // load new info from our tweet (if any)
-        if let tweet = self.tweet { 
-            tweetTextLabel?.text = tweet.text
+        if let tweet = self.tweet {
+            
+            // Tweet text
+            let tweetText = NSMutableAttributedString(string: tweet.text)
+            tweetText.addAttributes(Attributes.Hashtags, indexedKeywords: tweet.hashtags)
+            tweetText.addAttributes(Attributes.Urls, indexedKeywords: tweet.urls)
+            tweetText.addAttributes(Attributes.UserMentions, indexedKeywords: tweet.userMentions)
+            
             if tweetTextLabel?.text != nil {
                 for _ in tweet.media {
                     tweetTextLabel.text! += " 📷"
                 }
             }
+            
+            tweetTextLabel?.attributedText = tweetText
+            
             tweetScreenNameLabel?.text = "\(tweet.user)" // tweet.user.description
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak weakSelf = self] in
                 if let profileImageURL = tweet.user.profileImageURL, imageData = NSData(contentsOfURL: profileImageURL) { // blocks main thread. fixed?
@@ -92,4 +116,12 @@ class TweetTableViewCell: UITableViewCell {
     
     
     
+}
+// An example of creating elegant code through private extension
+private extension NSMutableAttributedString {
+    func addAttributes(attrs: [String: AnyObject], indexedKeywords: [Twitter.Tweet.IndexedKeyword]) {
+        for indexedKeyword in indexedKeywords {
+            self.addAttributes(attrs, range: indexedKeyword.nsrange)
+        }
+    }
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // a simple container class which just holds the data in a Tweet
 // IndexedKeywords are substrings of the Tweet's text

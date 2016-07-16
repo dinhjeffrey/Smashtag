@@ -73,12 +73,12 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
     private func updateDatabase(newTweets: [Twitter.Tweet]) {
         // anytime we access the database we have to use performBlock
-        managedObjectContext?.performBlock { [unowned self] in
+        managedObjectContext?.performBlock { [weak weakSelf = self] in
             for twitterInfo in newTweets {
                 // the _ = just lets readers of our code know
                 // that we are intentionally ignoring the return value
                 // create a new, unique Tweet with that Twitter info
-                _ = Tweet.tweetWithTwitterInfo(twitterInfo, inManagedObjectContext: self.managedObjectContext!) // _ = tells we are returning something
+                _ = Tweet.tweetWithTwitterInfo(twitterInfo, inManagedObjectContext: (weakSelf?.managedObjectContext!)!) // _ = tells we are returning something
             }
             // there is a method in AppDelegate
             // which will save the context as well
@@ -175,12 +175,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         let tweet = tweets[indexPath.section][indexPath.row]
         if let tweetCell = cell as? TweetTableViewCell {
             tweetCell.tweet = tweet
-        }
-        for (_, element) in tweet.hashtags.enumerate() {
-            let element = String(element)
-            let attributedString = NSMutableAttributedString(string: element)
-            let range = (element as NSString).rangeOfString(String(element))
-            attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor(), range: range)
         }
         return cell
     }

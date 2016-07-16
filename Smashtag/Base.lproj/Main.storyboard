@@ -5,6 +5,34 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
+        <!--Mention Table View Controller-->
+        <scene sceneID="GZd-vC-woH">
+            <objects>
+                <tableViewController id="SkO-OO-Xdr" customClass="MentionTableViewController" customModule="Smashtag" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ryb-t5-N3K">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="F8z-J5-pMT">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="F8z-J5-pMT" id="9RW-TV-HGx">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="SkO-OO-Xdr" id="9nb-wd-nG4"/>
+                            <outlet property="delegate" destination="SkO-OO-Xdr" id="6Pr-KD-Tou"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wG6-Tx-Cbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1315" y="-392"/>
+        </scene>
         <!--Tweet Table View Controller-->
         <scene sceneID="iSz-hF-UhH">
             <objects>
@@ -111,6 +139,7 @@
                     </refreshControl>
                     <connections>
                         <outlet property="searchTextField" destination="JmH-hg-CXv" id="8Zs-ea-6nF"/>
+                        <segue destination="SkO-OO-Xdr" kind="show" identifier="Show Tweet" id="BRE-3g-SGq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hie-RQ-sNg" userLabel="First Responder" sceneMemberID="firstResponder"/>
