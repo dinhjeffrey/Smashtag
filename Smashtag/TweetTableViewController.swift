@@ -53,15 +53,15 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     private func searchForTweets() {
         if let request = twitterRequest {
             lastTwitterRequest = request
-            request.fetchTweets { [weak weakSelf = self] newTweets in
-                dispatch_async(dispatch_get_main_queue()) {
+            request.fetchTweets { newTweets in
+                dispatch_async(dispatch_get_main_queue()) { [weak weakSelf = self] in
                     //if request == weakSelf?.lastTwitterRequest {
                     if !newTweets.isEmpty {
                         weakSelf?.tweets.insert(newTweets, atIndex: 0)
                         weakSelf?.updateDatabase(newTweets)
                     }
+                    self.refreshControl?.endRefreshing()
                     //}
-                    weakSelf?.refreshControl?.endRefreshing()
                 }
             }
         } else {
@@ -73,7 +73,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
     private func updateDatabase(newTweets: [Twitter.Tweet]) {
         // anytime we access the database we have to use performBlock
-        managedObjectContext?.performBlock{
+        managedObjectContext?.performBlock { [unowned self] in
             for twitterInfo in newTweets {
                 // the _ = just lets readers of our code know
                 // that we are intentionally ignoring the return value
@@ -104,14 +104,32 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     // the second way (countForFetchRequest) is much more efficient
     // (since it does the count in the database itself)
     
+    private var previousTweetCount = 0
+    private var currentTweetCount = 0
+    
     private func printDatabaseStatistics() {
-        managedObjectContext?.performBlock{
+        managedObjectContext?.performBlock { [weak weakSelf = self] in
             if let results = try? self.managedObjectContext!.executeFetchRequest(NSFetchRequest(entityName: "TwitterUser")) {
                 print("\(results.count) TwitterUsers")
             }
             // a more eficient way to count objects
             let tweetCount = self.managedObjectContext!.countForFetchRequest(NSFetchRequest(entityName: "Tweet"), error: nil)
             print("\(tweetCount) Tweets")
+            
+            
+            // keep track of new tweets
+            weakSelf?.currentTweetCount = tweetCount
+            
+            if weakSelf?.previousTweetCount == 0 {
+                weakSelf?.currentTweetCount = 100
+                weakSelf?.previousTweetCount = tweetCount
+            } else {
+                weakSelf?.currentTweetCount -= (weakSelf?.previousTweetCount)!
+                weakSelf?.previousTweetCount = tweetCount
+            }
+            print("weakSelf?.previousTweetCount = \(weakSelf?.previousTweetCount)")
+            print("weakSelf?.currentTweetCount = \(weakSelf?.currentTweetCount)")
+            self.tableView.reloadData()
         }
     }
     
@@ -133,8 +151,27 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
     // MARK: UITableViewDataSource
     
+    
+    
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "\(tweets.count - section)"
+        
+//        // keep track of new tweets
+//        let tweetCount = self.managedObjectContext!.countForFetchRequest(NSFetchRequest(entityName: "Tweet"), error: nil)
+//        
+//        self.currentTweetCount = tweetCount
+//        
+//        if self.previousTweetCount == 0 {
+//            self.currentTweetCount = 100
+//            self.previousTweetCount = tweetCount
+//        } else {
+//            self.currentTweetCount -= self.previousTweetCount
+//            self.previousTweetCount = self.currentTweetCount
+//        }
+//        print("self.previousTweetCount = \(self.previousTweetCount)")
+//        print("self.currentTweetCount = \(self.currentTweetCount)")
+        
+        
+        return "Section \(tweets.count - section) & New Tweets: \(self.currentTweetCount)"
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
