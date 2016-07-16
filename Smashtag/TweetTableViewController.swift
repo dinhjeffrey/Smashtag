@@ -107,6 +107,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     private var newSearch = false
     private var previousTweetCount = 0
     private var currentTweetCount = 0
+    private var numberOfRowsInSection = 0
     
     private func printDatabaseStatistics() {
         managedObjectContext?.performBlock { [weak weakSelf = self] in
@@ -122,7 +123,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
             weakSelf?.currentTweetCount = tweetCount
             
             if weakSelf?.newSearch == true {
-                weakSelf?.currentTweetCount = 100
+                weakSelf?.currentTweetCount = (weakSelf?.numberOfRowsInSection)!
                 weakSelf?.previousTweetCount = tweetCount
                 weakSelf?.newSearch = false
             } else {
@@ -164,6 +165,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        numberOfRowsInSection = tweets[section].count
         return tweets[section].count
     }
     
@@ -174,7 +176,12 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         if let tweetCell = cell as? TweetTableViewCell {
             tweetCell.tweet = tweet
         }
-        
+        for (_, element) in tweet.hashtags.enumerate() {
+            let element = String(element)
+            let attributedString = NSMutableAttributedString(string: element)
+            let range = (element as NSString).rangeOfString(String(element))
+            attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor(), range: range)
+        }
         return cell
     }
     
