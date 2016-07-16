@@ -104,6 +104,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     // the second way (countForFetchRequest) is much more efficient
     // (since it does the count in the database itself)
     
+    private var newSearch = false
     private var previousTweetCount = 0
     private var currentTweetCount = 0
     
@@ -120,9 +121,10 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
             // keep track of new tweets
             weakSelf?.currentTweetCount = tweetCount
             
-            if weakSelf?.previousTweetCount == 0 {
+            if weakSelf?.newSearch == true {
                 weakSelf?.currentTweetCount = 100
                 weakSelf?.previousTweetCount = tweetCount
+                weakSelf?.newSearch = false
             } else {
                 weakSelf?.currentTweetCount -= (weakSelf?.previousTweetCount)!
                 weakSelf?.previousTweetCount = tweetCount
@@ -154,23 +156,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-//        // keep track of new tweets
-//        let tweetCount = self.managedObjectContext!.countForFetchRequest(NSFetchRequest(entityName: "Tweet"), error: nil)
-//        
-//        self.currentTweetCount = tweetCount
-//        
-//        if self.previousTweetCount == 0 {
-//            self.currentTweetCount = 100
-//            self.previousTweetCount = tweetCount
-//        } else {
-//            self.currentTweetCount -= self.previousTweetCount
-//            self.previousTweetCount = self.currentTweetCount
-//        }
-//        print("self.previousTweetCount = \(self.previousTweetCount)")
-//        print("self.currentTweetCount = \(self.currentTweetCount)")
-        
-        
         return "Section \(tweets.count - section) & New Tweets: \(self.currentTweetCount)"
     }
     
@@ -213,6 +198,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         searchText = textField.text
+        newSearch = true
         return true
     }
     
