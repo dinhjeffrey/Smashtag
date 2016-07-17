@@ -7,9 +7,74 @@
 //
 
 import UIKit
+import Twitter
 
 class MentionTableViewController: UITableViewController {
-
+    
+    var tweet: Twitter.Tweet? {
+        didSet {
+            if let tweet = tweet {
+                title = tweet.user.name
+                
+                // Images
+                if tweet.media.count > 0 {
+                    var mediaItems = [Mention]()
+                    for mediaItem in tweet.media {
+                        mediaItems.append(Mention.Image(mediaItem))
+                    }
+                    addMentions(mediaItems)
+                }
+                
+                // Hashtags
+                if tweet.hashtags.count > 0 {
+                    var hashtags = [Mention]()
+                    for hashtag in tweet.hashtags {
+                        hashtags.append(Mention.Hashtag(hashtag.keyword))
+                    }
+                }
+                
+                
+            }
+        }
+    }
+    
+    private var mentions = [[Mention]]()
+    private func addMentions(mentionsToInsert: [Mention]) {
+        mentions.insert(mentionsToInsert, atIndex: mentions.count)
+    }
+    
+    private enum Mention {
+        case Image(Twitter.MediaItem)
+        case Hashtag(String)
+        case URL(String)
+        case UserMention(String)
+        
+        var description: String {
+            switch self {
+            case .Image(let mediaItem):
+                return mediaItem.url.absoluteString
+            case .Hashtag(let hashtag):
+                return hashtag
+            case .URL(let url):
+                return url
+            case .UserMention(let userMention):
+                return userMention
+            }
+        }
+        
+        var type: String {
+            switch self {
+            case .Image(_):
+                return "Images"
+            case .Hashtag(_):
+                return "Hashtags"
+            case .URL(_):
+                return "URLs"
+            case .UserMention(_):
+                return "Users"
+            }
+        }
+    }
   
     // MARK: - Table view data source
 

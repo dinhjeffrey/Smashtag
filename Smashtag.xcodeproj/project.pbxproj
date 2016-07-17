@@ -74,9 +74,9 @@
 		0008743D1D3ACB02001BA3A8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				008A63D71D3003F3000E36C4 /* TweetTableViewController.swift */,
 				0008743B1D3AC95E001BA3A8 /* MentionTableViewController.swift */,
 				00AD3C2B1D342F97006B8751 /* TweetersTableViewController.swift */,
-				008A63D71D3003F3000E36C4 /* TweetTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
