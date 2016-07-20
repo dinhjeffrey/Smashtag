@@ -148,7 +148,10 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         }
         if segue.identifier == Storyboard.ShowMentionSegue {
             if let mentionTVC = segue.destinationViewController.contentViewController as? MentionTableViewController {
-                mentionTVC.title = "Mention Table View Controller"
+                if let indexPathForSelectedRow = tableView.indexPathForSelectedRow {
+                    mentionTVC.tweet = tweets[indexPathForSelectedRow.section][indexPathForSelectedRow.row]
+                    mentionTVC.title = "Mention Table View Controller"
+                }
             }
         }
     }
