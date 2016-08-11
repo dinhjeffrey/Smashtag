@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0008743C1D3AC95E001BA3A8 /* MentionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008743B1D3AC95E001BA3A8 /* MentionTableViewController.swift */; };
-		002814BC1D3F409B0028DBEB /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002814BB1D3F409B0028DBEB /* Twitter.framework */; };
+		003E7BD31D4E61F600007C86 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003E7BD11D4E61F100007C86 /* Twitter.framework */; };
+		003E7BD41D4E61F600007C86 /* Twitter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003E7BD11D4E61F100007C86 /* Twitter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		008A63C51D300268000E36C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A63C41D300268000E36C4 /* AppDelegate.swift */; };
 		008A63CA1D300269000E36C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 008A63C81D300269000E36C4 /* Main.storyboard */; };
 		008A63CC1D300269000E36C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 008A63CB1D300269000E36C4 /* Assets.xcassets */; };
@@ -24,9 +25,23 @@
 		00E7B11A1D3016C2001143D8 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E7B1191D3016C2001143D8 /* TweetTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		003E7BD51D4E61F600007C86 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				003E7BD41D4E61F600007C86 /* Twitter.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0008743B1D3AC95E001BA3A8 /* MentionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionTableViewController.swift; sourceTree = "<group>"; };
-		002814BB1D3F409B0028DBEB /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Lecture9-esgjeuhadtbklrcpvwzewakauffy/Build/Products/Debug-iphonesimulator/Twitter.framework"; sourceTree = "<group>"; };
+		003E7BD11D4E61F100007C86 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Lecture9-esgjeuhadtbklrcpvwzewakauffy/Build/Products/Debug-iphoneos/Twitter.framework"; sourceTree = "<group>"; };
 		008A63C11D300268000E36C4 /* Smashtag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smashtag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		008A63C41D300268000E36C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		008A63C91D300269000E36C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -49,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				002814BC1D3F409B0028DBEB /* Twitter.framework in Frameworks */,
+				003E7BD31D4E61F600007C86 /* Twitter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +101,7 @@
 		008A63B81D300268000E36C4 = {
 			isa = PBXGroup;
 			children = (
-				002814BB1D3F409B0028DBEB /* Twitter.framework */,
+				003E7BD11D4E61F100007C86 /* Twitter.framework */,
 				008A63C31D300268000E36C4 /* Smashtag */,
 				008A63C21D300268000E36C4 /* Products */,
 			);
@@ -145,6 +160,7 @@
 				008A63BD1D300268000E36C4 /* Sources */,
 				008A63BE1D300268000E36C4 /* Frameworks */,
 				008A63BF1D300268000E36C4 /* Resources */,
+				003E7BD51D4E61F600007C86 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
